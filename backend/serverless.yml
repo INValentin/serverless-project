@@ -1,5 +1,5 @@
 # TODO - DONE: Change the name of the org 
-org: cloud-dev-serverless
+org: valentinaws
 app: serverless-todo-app
 service: serverless-todo-app
 
@@ -179,7 +179,7 @@ resources:
             KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
         LocalSecondaryIndexes:
-          - IndexName: ${self:provide.environment.TODOS_CREATED_AT_INDEX}
+          - IndexName: ${self:provider.environment.TODOS_CREATED_AT_INDEX}
             KeySchema:
               - AttributeName: userId
                 KeyType: HASH
