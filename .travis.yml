@@ -14,4 +14,4 @@ script:
   - export NODE_OPTIONS="--max_old_space_size=4096"
 
 after_success:
-  - sls deploy -v
+  - sls deploy --verbose
