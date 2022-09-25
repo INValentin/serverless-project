@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - 12
+
+os: linux
+
+before_install:
+  - npm install -g serverless@2.21.1
+  - npm i -g npm@6
+
+script:
+  - cd ./backend
+  - npm install
+  - serverless plugin install --name serverless-webpack
+  - export NODE_OPTIONS="--max_old_space_size=4096"
+
+after_success:
+  - sls deploy -v
