@@ -4,9 +4,10 @@ app: serverless-todo-app
 service: serverless-todo-app
 
 plugins:
-  - serverless-webpack
+#  - serverless-webpack
   - serverless-iam-roles-per-function
   - serverless-plugin-tracing
+  - serverless serverless-bundle
 
 provider:
   name: aws
