@@ -1,12 +1,12 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import 'source-map-support/register'
-import * as middy from 'middy'
 import { cors } from 'middy/middlewares'
 import { CreateTodoRequest } from '../../requests/CreateTodoRequest'
 import { TodoItem } from '../../models/TodoItem'
 import { getUserId } from '../utils';
 import { createTodo } from '../../helpers/todos'
 import uuid from "uuid"
+import middy from 'middy'
 
 const BUCKET_NAME = process.env.ATTACHMENT_S3_BUCKET
 

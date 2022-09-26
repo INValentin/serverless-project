@@ -5,15 +5,14 @@ service: serverless-todo-app
 
 plugins:
 #  - serverless-webpack
-  - serverless-webpack
-  - fork-ts-checker-webpack-plugin
+  - serverless-esbuild
+  # - fork-ts-checker-webpack-plugin
   - serverless-iam-roles-per-function
   - serverless-plugin-tracing
 
 provider:
   name: aws
   runtime: nodejs12.x
-  lambdaHashingVersion: '20201221'
 
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
@@ -148,11 +147,13 @@ resources:
     GatewayResponseDefault4XX:
       Type: AWS::ApiGateway::GatewayResponse
       Properties:
-        ResponseParameters: 
+        ResponseParameters:
           gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
           gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
         ResponseType: DEFAULT_4XX
-        Ref: ApiGatewayRestApi
+        RestApiId: 
+          Ref: 'ApiGatewayRestApi'
     
     # TODO: Create a DynamoDB table with local secondary index and a composite key
     TodosTable:
@@ -196,8 +197,15 @@ resources:
         BucketName: ${self:provider.environment.ATTACHMENT_S3_BUCKET}
         CorsConfiguration:
           CorsRules:
-            - AllowedMethods: '*'
-              AllowedOrigins: '*'
+            - AllowedMethods:
+              - 'GET'
+              - 'POST'
+              - 'DELETE'
+              - 'OPTIONS'
+              - 'HEAD'
+              - 'PUT'
+              AllowedOrigins: 
+                - '*'
 
     # TODO: Complete the policy below and attach it to the bucket defined above
     # For cross referencing the name of the bucket, use "!Ref AttachmentsBucket"
@@ -217,3 +225,14 @@ resources:
                 - !Ref AttachmentsBucket
                 - /*
             Principal: '*'
+
+	
+package:
+  individually: true
+  
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+    exclude: 
+      - 'aws-sdk'
