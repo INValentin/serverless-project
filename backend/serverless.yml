@@ -2,6 +2,7 @@
 org: valentinaws
 app: serverless-todo-app
 service: serverless-todo-app
+frameworkVersion: ^3.22.0
 
 plugins:
 #  - serverless-webpack
@@ -47,7 +48,7 @@ provider:
             - logs:GetLogEvents
             - logs:PutLogEvents
             - logs:CreateLogGroup
-          Resource: "*"
+          Resource: '*'
   
 
 functions:
@@ -66,7 +67,6 @@ functions:
           cors: true
           authorizer: Auth
     iamRoleStatements:
-    
       - Effect: "Allow"
         Action:
         - dynamodb:Query
@@ -206,13 +206,10 @@ resources:
         CorsConfiguration:
           CorsRules:
             - AllowedMethods:
-              - 'GET'
-              - 'POST'
-              - 'DELETE'
-              - 'OPTIONS'
-              - 'HEAD'
-              - 'PUT'
-              AllowedOrigins: 
+                - '*'
+              AllowedOrigins:
+                - '*'
+              AllowedHeaders: 
                 - '*'
 
     # TODO: Complete the policy below and attach it to the bucket defined above
