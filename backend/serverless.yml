@@ -206,10 +206,12 @@ resources:
         CorsConfiguration:
           CorsRules:
             - AllowedMethods:
-                - '*'
+              - 'GET'
+              - 'POST'
+              - 'PUT'
+              - 'DELETE'
+              - 'HEAD'
               AllowedOrigins:
-                - '*'
-              AllowedHeaders: 
                 - '*'
 
     # TODO: Complete the policy below and attach it to the bucket defined above
