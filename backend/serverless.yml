@@ -168,7 +168,7 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:provider.environment.TODOS_TABLE}
-        KeySchema:
+        AttributeDefinitions:
           - AttributeName: todoId
             AttributeType: S
           - AttributeName: userId
@@ -183,7 +183,7 @@ resources:
           #   AttributeType: BOOL
           # - AttributeName: attachmentUrl
           #   AttributeType: S
-        AttributeDefinitions:
+        KeySchema:
           - AttributeName: todoId
             KeyType: HASH
           - AttributeName: createdAt
