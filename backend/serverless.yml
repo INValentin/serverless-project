@@ -43,8 +43,10 @@ provider:
           Resource: '*'
         - Effect: Allow
           Action:
+            - logs:CreateLogStream
             - logs:GetLogEvents
             - logs:PutLogEvents
+            - logs:CreateLogGroup
           Resource: "*"
   
 
