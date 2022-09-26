@@ -168,22 +168,22 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:provider.environment.TODOS_TABLE}
-        AttributeDefinitions:
+        KeySchema:
           - AttributeName: todoId
             AttributeType: S
           - AttributeName: userId
             AttributeType: S
           - AttributeName: createdAt
             AttributeType: S
-          - AttributeName: dueDate
-            AttributeType: S
-          - AttributeName: name
-            AttributeType: S
-          - AttributeName: done
-            AttributeType: BOOL
-          - AttributeName: attachmentUrl
-            AttributeType: S
-        KeySchema:
+          # - AttributeName: dueDate
+          #   AttributeType: S
+          # - AttributeName: name
+          #   AttributeType: S
+          # - AttributeName: done
+          #   AttributeType: BOOL
+          # - AttributeName: attachmentUrl
+          #   AttributeType: S
+        AttributeDefinitions:
           - AttributeName: todoId
             KeyType: HASH
           - AttributeName: createdAt
