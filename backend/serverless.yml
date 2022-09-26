@@ -41,6 +41,11 @@ provider:
             - xray:PutTelemetryRecords
             - xray:PutTraceSegments
           Resource: '*'
+        - Effect: Allow
+          Action:
+            - logs:GetLogEvents
+            - logs:PutLogEvents
+          Resource: "*"
   
 
 functions:
@@ -59,6 +64,7 @@ functions:
           cors: true
           authorizer: Auth
     iamRoleStatements:
+    
       - Effect: "Allow"
         Action:
         - dynamodb:Query
@@ -218,6 +224,7 @@ resources:
         Statement:
           - Action:
               - 's3:GetObject'
+              - 's3:PutObject'
             Effect: "Allow"
             Resource: !Join
               - ''
