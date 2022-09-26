@@ -6,6 +6,7 @@ service: serverless-todo-app
 plugins:
 #  - serverless-webpack
   - serverless-webpack
+  - fork-ts-checker-webpack-plugin
   - serverless-iam-roles-per-function
   - serverless-plugin-tracing
 
