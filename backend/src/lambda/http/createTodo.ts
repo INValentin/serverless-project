@@ -16,7 +16,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
   const newItem: TodoItem = {
     userId: getUserId(event),
-    todoId: uuid.v4(),
+    todoId,
     name: newTodo.name,
     dueDate: newTodo.dueDate,
     done: false,
