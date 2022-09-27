@@ -223,7 +223,6 @@ resources:
       Properties:
         Bucket: !Ref AttachmentsBucket
         PolicyDocument:
-          PolicyName: 'UsersCanGetObjectsFromBucket'
           Version: 2012-10-17
           Statement:
             - Action:
