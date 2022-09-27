@@ -1,11 +1,12 @@
 import 'source-map-support/register'
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-import { cors, httpErrorHandler } from 'middy/middlewares'
 
 import { deleteTodo } from '../../helpers/todos'
 import { getUserId } from '../utils'
-const middy = require('middy')
+import middy from '@middy/core'
+import cors from '@middy/http-cors'
+import httpErrorHandler from '@middy/http-error-handler'
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
