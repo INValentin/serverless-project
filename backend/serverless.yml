@@ -72,7 +72,7 @@ functions:
         - dynamodb:Query
         Resource: 
           - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE} 
-          - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index*
+          - arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/*
 
   # TODO: Configure this function - 
   # Provide iamRoleStatements property. Decide the Actions and AWS Resource. 
