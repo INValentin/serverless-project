@@ -14,7 +14,7 @@ const XAWS = AWSXRay.captureAWS(AWS)
 const docClient: DocumentClient = new XAWS.DynamoDB.DocumentClient()
 
 const TODOS_TABLE = process.env.TODOS_TABLE
-const TODOS_INDEX_TABLE = process.env.TODOS_CREATED_AT_INDEX
+// const TODOS_INDEX_TABLE = process.env.TODOS_CREATED_AT_INDEX
 
 export const saveTodo = async (newItem: TodoItem): Promise<TodoItem> => {
     await docClient.put({
@@ -28,7 +28,6 @@ export const saveTodo = async (newItem: TodoItem): Promise<TodoItem> => {
 export const getTodosForUser = async (userId: string): Promise<TodoItem[]> => {
     const userTodos = await docClient.query({
         TableName: TODOS_TABLE,
-        //IndexName: TODOS_INDEX_TABLE,
         KeyConditionExpression: "userId = :userId",
         ExpressionAttributeValues: {
             ":userId": userId
@@ -41,14 +40,12 @@ export const getTodosForUser = async (userId: string): Promise<TodoItem[]> => {
 export const updateTodo = async (todoId: string, userId: string, todoUpdate: TodoUpdate) => {
     await docClient.update({
         TableName: TODOS_TABLE,
-        Key: {"todoId": todoId},
+        Key: {"userId": userId, "todoId": todoId},
         UpdateExpression: 'SET name = :name, dueDate = :dueDate, done = :done',
-        ConditionExpression: "userId = :userId",
         ExpressionAttributeValues: {
             ":name": todoUpdate.name,
             ":dueDate": todoUpdate.dueDate,
             ":done": todoUpdate.done,
-            ":userId": userId,
         }
     }).promise()
 }
@@ -56,20 +53,6 @@ export const updateTodo = async (todoId: string, userId: string, todoUpdate: Tod
 export const deleteTodo = async (todoId:string, userId: string) => {
     await docClient.delete({
         TableName: TODOS_TABLE,
-        Key: {"todoId": todoId},
-        ConditionExpression: "userId = :userId",
-        ExpressionAttributeValues: {
-            ":userId": userId,
-        }
+        Key: {"userId": userId, "todoId": todoId},
     }).promise()
 }
-
-
-// export const getTodo = async (todoId: string):Promise<TodoItem> => {
-//     const todoItem = await docClient.get({
-//         TableName: TODOS_TABLE,
-//         Key: {"todoId": todoId},
-//     }).promise()
-    
-//     return todoItem.Item as TodoItem
-// }
