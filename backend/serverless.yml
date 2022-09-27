@@ -223,18 +223,18 @@ resources:
       Properties:
         Bucket: !Ref AttachmentsBucket
         PolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Action:
-              - 's3:GetObject'
-              - 's3:PutObject'
-            Effect: "Allow"
-            Resource: !Join
-              - ''
-              - - 'arn:aws:s3:::'
-                - !Ref AttachmentsBucket
-                - /*
-            Principal: '*'
+          PolicyName: 'UsersCanGetObjectsFromBucket'
+          Version: 2012-10-17
+          Statement:
+            - Action:
+                - 's3:GetObject'
+              Effect: "Allow"
+              Resource: !Join
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref AttachmentsBucket
+                  - /*
+              Principal: '*'
 
 	
 package:
