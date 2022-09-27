@@ -6,7 +6,7 @@ import { deleteTodo } from '../../helpers/todos'
 import { getUserId } from '../utils'
 import middy from '@middy/core'
 import cors from '@middy/http-cors'
-import httpErrorHandler from '@middy/http-error-handler'
+// import httpErrorHandler from '@middy/http-error-handler'
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
@@ -27,7 +27,7 @@ export const handler = middy(
 )
 
 handler
-  .use(httpErrorHandler())
+  // .use(httpErrorHandler())
   .use(
     cors({
       credentials: true
