@@ -192,9 +192,9 @@ resources:
         LocalSecondaryIndexes:
           - IndexName: ${self:provider.environment.TODOS_CREATED_AT_INDEX}
             KeySchema:
-              - AttributeName: userId
+              - AttributeName: todoId
                 KeyType: HASH
-              - AttributeName: createdAt
+              - AttributeName: userId
                 KeyType: RANGE
             Projection:
               ProjectionType: ALL
