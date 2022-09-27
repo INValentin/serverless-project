@@ -6,7 +6,7 @@ import { TodoItem } from '../../models/TodoItem'
 import { getUserId } from '../utils';
 import { createTodo } from '../../helpers/todos'
 import uuid from "uuid"
-import middy from 'middy'
+const middy = require('middy')
 
 const BUCKET_NAME = process.env.ATTACHMENT_S3_BUCKET
 
