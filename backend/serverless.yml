@@ -222,8 +222,8 @@ resources:
       Type: AWS::S3::BucketPolicy
       Properties:
         Bucket: !Ref AttachmentsBucket
-        PolicyName: "ObjectGetAccessPolicyGlobally"
         PolicyDocument:
+          PolicyName: "ObjectGetAccessPolicyGlobally"
           Version: '2012-10-17'
           Statement:
             - Action:
