@@ -32,6 +32,6 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true
     },
-    body: JSON.stringify({ item: newTodo })
+    body: JSON.stringify({ item: newItem })
   }
 }
