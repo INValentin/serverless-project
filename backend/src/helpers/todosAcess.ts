@@ -28,7 +28,7 @@ export const saveTodo = async (newItem: TodoItem): Promise<TodoItem> => {
 export const getTodosForUser = async (userId: string): Promise<TodoItem[]> => {
     const userTodos = await docClient.query({
         TableName: TODOS_TABLE,
-        IndexName: TODOS_INDEX_TABLE,
+        //IndexName: TODOS_INDEX_TABLE,
         KeyConditionExpression: "userId = :userId",
         ExpressionAttributeValues: {
             ":userId": userId
