@@ -41,9 +41,8 @@ export const updateTodo = async (todoId: string, userId: string, todoUpdate: Tod
     await docClient.update({
         TableName: TODOS_TABLE,
         Key: {"userId": userId, "todoId": todoId},
-        UpdateExpression: 'SET name = :name, dueDate = :dueDate, done = :done',
+        UpdateExpression: 'SET dueDate = :dueDate, done = :done',
         ExpressionAttributeValues: {
-            ":name": todoUpdate.name,
             ":dueDate": todoUpdate.dueDate,
             ":done": todoUpdate.done,
         }

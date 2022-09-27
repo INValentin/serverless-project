@@ -19,7 +19,7 @@ export const generateSignedUploadUrl = (todoId: string):string => {
     const url = s3.getSignedUrl("putObject", {
         Bucket: BUCKET_NAME,
         Key: todoId,
-        Expires: EXPIRATION
+        Expires: parseInt(EXPIRATION)
     })
     return url
 }
